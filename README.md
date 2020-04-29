@@ -3,8 +3,7 @@
 ## MERN based react native application
 Minimal full-stack MERN app with authentication using passport and JWTs. Project includes react native based user authentication having backend server using Express with Mongo db.
 
-![Login](./images/login.jpg?raw=true "Login")![Signup](./images/signup.jpg?raw=true "Signup")![Home](./images/home.jpg?raw=true "Home")![Drawer](./images/drawer.jpg?raw=true "Drawer")![Summary](./images/summary.jpg?raw=true "Summary")![Details](./images/detail.jpg?raw=true "Details")![Popup](./images/popup.jpg?raw=true "Details")
-
+![Login](./images/login.jpg?raw=true "Login")  |  ![Signup](./images/signup.jpg?raw=true "Signup")  |  ![Home](./images/home.jpg?raw=true "Home")  |  ![Drawer](./images/drawer.jpg?raw=true "Drawer")  |  ![Summary](./images/summary.jpg?raw=true "Summary")  |  ![Details](./images/detail.jpg?raw=true "Details")  |  ![Popup](./images/popup.jpg?raw=true "Details")
 
 #### Project Setup
 Expo CLI Quickstart - Cli tool
