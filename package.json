@@ -1,0 +1,58 @@
+{
+  "scripts": {
+    "start": "react-native start",
+    "start:dev": "react-native start --port 8097",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "web": "expo start --web",
+    "devtools": "react-devtools",
+    "android:build": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
+  },
+  "dependencies": {
+    "@react-native-community/masked-view": "^0.1.9",
+    "@react-navigation/bottom-tabs": "^5.2.7",
+    "@react-navigation/drawer": "^5.5.0",
+    "@react-navigation/native": "^5.1.6",
+    "@react-navigation/stack": "^5.2.11",
+    "expo": "~37.0.3",
+    "expo-updates": "~0.1.0",
+    "react": "~16.9.0",
+    "react-dom": "~16.9.0",
+    "react-native": "~0.61.5",
+    "react-native-elements": "~1.2.7",
+    "react-native-gesture-handler": "^1.6.1",
+    "react-native-reanimated": "^1.7.1",
+    "react-native-safe-area-context": "^0.7.3",
+    "react-native-screens": "^2.2.0",
+    "react-native-unimodules": "~0.9.0",
+    "react-native-vector-icons": "^6.6.0",
+    "react-native-web": "~0.11.7",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.6",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "~25.2.6",
+    "babel-preset-expo": "~8.1.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-native": "^3.8.1",
+    "husky": "^4.2.5",
+    "jest": "~25.2.6",
+    "react-devtools": "^4.6.0",
+    "react-devtools-core": "^4.6.0",
+    "react-test-renderer": "~16.9.0",
+    "redux-devtools-extension": "^2.13.8"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint:fix && git add . && npm test"
+    }
+  },
+  "private": true
+}
