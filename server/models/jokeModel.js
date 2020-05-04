@@ -6,7 +6,7 @@ let jokeSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  email: {
+  userId: {
     type: String,
     required: true
   },

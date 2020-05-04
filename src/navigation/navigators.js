@@ -3,7 +3,12 @@ import CustomDrawer from '../components/CustomDrawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Views } from '../views';
-import { SIGNIN, SIGNUP, HOME, SUMMARY, DETAILS } from './screen_names';
+import { SIGNIN,
+  SIGNUP,
+  HOME,
+  SUMMARY,
+  DETAILS,
+  PROFILE } from './screen_names';
 
 const AuthStack = createStackNavigator();
 export const AuthStackScreen = () =>
@@ -56,5 +61,10 @@ export const DrawerScreen = () => <Drawer.Navigator
     name={SUMMARY}
     component={SummaryStackScreen}
     options={{ drawerLabel: 'Summary' }}
+  />
+  <Drawer.Screen
+    name={PROFILE}
+    component={Views.Profile}
+    options={{ drawerLabel: 'Profile' }}
   />
 </Drawer.Navigator>;

@@ -32,7 +32,7 @@ exports.getJoke = async (req, res) => {
 
 // Handle index actions
 exports.index = function (req, res) {
-  Joke.find({ email: req.user.email }, function (err, Jokes) {
+  Joke.find({ userId: req.user.id }, function (err, Jokes) {
     if (err) {
       res.json({
         status: 'error',
@@ -52,7 +52,7 @@ exports.new = function (req, res) {
   joke.id = req.body.id;
   joke.joke = req.body.joke;
   joke.status = req.body.status;
-  joke.email = req.user.email;
+  joke.userId = req.user.id;
   // save the joke and check for errors
   joke.save(function (err) {
     // Check for validation error

@@ -1,6 +1,6 @@
 import store from '../store';
 import { showLoader, hideLoader } from '../actions/loaderActions';
-import { updateToken } from '../actions/authActions';
+import { updateAuthData } from '../actions/authActions';
 import { Platform } from 'react-native';
 import Toast from '../components/CustomAndroidToast';
 
@@ -9,7 +9,7 @@ const invokeService = ({ serviceUrl, method = 'GET', requestData }) => {
   console.info('requestData is ', requestData);
 
   const baseUrl = Platform.OS !== 'android' ? 'http://localhost:3000'
-                                            : 'http://192.168.1.3:3000';
+                                            : 'http://192.168.1.4:3000';
   const data = requestData ? JSON.stringify(requestData) : {};
 
   // Show loading icon
@@ -42,14 +42,15 @@ const invokeService = ({ serviceUrl, method = 'GET', requestData }) => {
       store.dispatch(hideLoader());
       if (!response.ok) {
         response.status === 403 &&
-        store.dispatch(updateToken(''));
-        response.json().then(data =>
+        store.dispatch(updateAuthData());
+        return response.json().then(data =>
           Platform.OS === 'android' ?
           Toast({ visible: true, message: data.errorMessage })
           : Error(response.statusText)
         );
+      } else {
+        return response.json();
       }
-      return response.json();
     })
     .catch((error) => {
       store.dispatch(hideLoader());

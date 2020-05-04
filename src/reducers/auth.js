@@ -1,11 +1,16 @@
 const initialState = {
-    userToken: ''
+    userToken: '',
+    userName: '',
+    email: '',
+    avatar: ''
 };
 const authReducer = (state = initialState, action) => {
     switch(action.type) {
-        case 'UPDATE_TOKEN': return {
+        case 'UPDATE_AUTH_DATA':
+          const data = action.payload || initialState;
+          return {
             ...state,
-            userToken: action.payload
+            ...data
         };
         default: return state;
     }

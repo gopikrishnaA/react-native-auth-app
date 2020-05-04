@@ -25,6 +25,9 @@ router
   .route('/user/login')
   .post(userController.login);
 router
+  .route('/user/update')
+  .post(authenticateJWT, userController.update);
+router
   .route('/joke')
   .get(authenticateJWT, jokeController.getJoke);
 router

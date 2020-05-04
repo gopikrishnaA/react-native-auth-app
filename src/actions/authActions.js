@@ -4,9 +4,9 @@ import { updateJokes } from './jokesAction';
 import { SIGNIN } from '../navigation/screen_names';
 import Toast from '../components/CustomAndroidToast';
 
-export const updateToken = (token) => ({
-  type: 'UPDATE_TOKEN',
-  payload: token
+export const updateAuthData = (payload) => ({
+  type: 'UPDATE_AUTH_DATA',
+  payload
 });
 
 export const getJoke = () => {
@@ -37,7 +37,14 @@ export const Login = (payload) => {
       requestData
     })
       .then((result) => {
-        dispatch(updateToken(result?.token || ''));
+        dispatch(updateAuthData({
+          userId: result?.userId,
+          userToken: result?.token || '',
+          email: result?.email,
+          userName: result?.userName,
+          avatar: result?.avatar,
+          password
+        }));
         result?.token && dispatch(getJoke());
       })
       .catch((err) => {
@@ -49,10 +56,10 @@ export const Login = (payload) => {
 export const Register = (payload) => {
   return () => {
     const { navigation,
-       email,
-       username,
-       password,
-       password2 } = payload;
+      email,
+      username,
+      password,
+      password2 } = payload;
     const requestData = {
       name: username,
       email,
@@ -68,9 +75,50 @@ export const Register = (payload) => {
         const isSuccess = result?.status === 'success';
         if (Platform.OS === 'android') {
           isSuccess &&
-          Toast({ visible: true, message: 'User created successfully' });
+            Toast({ visible: true, message: 'User created successfully' });
         }
         isSuccess && navigation.navigate(SIGNIN);
+      })
+      .catch((err) => {
+        console.error(err); // log since could be render err
+      });
+  };
+};
+export const updateUser = (payload) => {
+  return (dispatch) => {
+    const {
+      avatar = '',
+      email,
+      username,
+      password,
+      password2,
+      userId } = payload;
+    const requestData = {
+      avatar,
+      name: username,
+      email,
+      password,
+      password2,
+      userId
+    };
+    invokeService({
+      serviceUrl: '/api/user/update',
+      method: 'POST',
+      requestData
+    })
+      .then((result) => {
+        const isSuccess = result?.status === 'success';
+        isSuccess && dispatch(updateAuthData({
+          userId: result?.userId,
+          email: result?.email,
+          userName: result?.userName,
+          avatar: result?.avatar,
+          password
+        }));
+        if (Platform.OS === 'android') {
+          isSuccess &&
+            Toast({ visible: true, message: 'User updated successfully' });
+        }
       })
       .catch((err) => {
         console.error(err); // log since could be render err
